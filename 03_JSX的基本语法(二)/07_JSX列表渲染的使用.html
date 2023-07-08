@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .item{
+      margin: 5px 0;
+      border: 1px solid skyblue;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="../lib/react.js"></script>
+  <script src="../lib/react-dom.js"></script>
+  <script src="../lib/babel.js"></script>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super()
+
+        this.state = {
+          students:[
+            {id: 111, name: "TQ", age: 19},
+            {id: 222, name: "ll", age: 18},
+            {id: 333, name: "tk", age: 13},
+            {id: 444, name: "xm", age: 16},
+          ]
+        }
+      }
+
+      render() {
+        const { students } = this.state
+        // 年纪大于13的学生进行展示
+        const filtersStudents = students.filter(item => {
+          return item.age > 13
+        })
+
+        // 分数大于100, 只展示两个人的信息
+        // slice(start, end) : [start, end]
+        const sliceStudents = filtersStudents.slice(0, 2)
+
+        return(
+          <div>
+            <h2>列表</h2>
+            <div className="list">
+              {sliceStudents.map(item => {
+                return(
+                  <div className="item" key={item.id}>
+                    <h4>学号: {item.id}</h4>
+                    <h3>姓名: {item.name}</h3>
+                    <h4>年龄: {item.age}</h4>
+                  </div>
+                )
+               })
+              }  
+            </div>
+            
+          </div>
+        )
+      }
+    }
+    const root = ReactDOM.createRoot(document.querySelector("#root"))
+    root.render(<App/>)
+  </script>
+</body>
+</html>

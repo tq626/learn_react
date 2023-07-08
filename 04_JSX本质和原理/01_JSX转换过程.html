@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="../lib/react.js"></script>
+  <script src="../lib/react-dom.js"></script>
+  <script src="../lib/babel.js"></script>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super()
+
+        this.state = {
+          message: "Hello World"
+        }
+      }
+
+      render() {
+        const { message } = this.state
+         return(
+          <div>
+            <div className="header">Header</div>  
+            <div class="content">
+              {message}
+              <ul>
+                <li>列表数据1</li>
+                <li>列表数据2</li>
+                <li>列表数据3</li>
+                <li>列表数据4</li>
+                <li>列表数据5</li>
+              </ul>
+            </div>
+            <div className="footer">Footer</div>
+          </div>
+        )
+      }
+    }
+    const root = ReactDOM.createRoot(document.querySelector("#root"))
+    root.render(<App/>)
+  </script>
+</body>
+</html>

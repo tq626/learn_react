@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="../lib/react.js"></script>
+  <script src="../lib/react-dom.js"></script>
+  <script src="../lib/babel.js"></script>
+
+  <script type="text/babel">
+    class App extends React.Component{
+      constructor() {
+        super()
+
+        this.state = {
+          title: "tq",
+          imgURL:"https://cn.bing.com/images/search?view=detailV2&ccid=lYk6NRGc&id=89B40DE6EBE1B6D7EE78C0BAC8E7A9F75D6003E1&thid=OIP.lYk6NRGcZfDKmZzeoxj3fwHaLH&mediaurl=https%3a%2f%2fts1.cn.mm.bing.net%2fth%2fid%2fR-C.95893a35119c65f0ca999cdea318f77f%3frik%3d4QNgXfep58i6wA%26riu%3dhttp%253a%252f%252fn.sinaimg.cn%252fsinacn20104%252f320%252fw2048h3072%252f20190115%252f0536-hrsecha8129321.jpg%26ehk%3dVvIuofv1ovSJvujcnkN%252fhskLttvMYFekL5bspkCzp1k%253d%26risl%3d%26pid%3dImgRaw%26r%3d0&exph=3072&expw=2048&q=%e8%bf%aa%e4%b8%bd%e7%83%ad%e5%b7%b4&simid=608021705788827644&FORM=IRPRST&ck=5408328AA33931F531AA15750E6F9C5D&selectedIndex=42&ajaxhist=0&ajaxserp=0",
+          href: "https://www.baidu.com",
+
+          isActive: true
+        }
+      }
+
+      render() {
+        const { title, imgURL, href, isActive } = this.state
+
+        // 1.class绑定的写法一: 字符串的拼接
+        const className = `abc cba ${ isActive ? 'active' : '' }`
+        // 2.class绑定的写法二: 将所有的class放到数组中
+        const classList = ["abc", "cba"]
+        if (isActive) classList.push("active")
+
+        return(
+          <div>
+            {/*1.基本绑定*/} 
+            <h2 title={title}>hahah</h2> 
+            <img src={imgURL} alt=""/>
+            <a href={href}>百度一下</a>
+
+            {/*绑定class属性, 最好使用className*/}
+            <h2 className={className}>田桥</h2>
+            <h2 className={classList.join(" ")}>liangliang</h2>
+
+            {/*3.绑定style属性*/}
+            <h2 style={{color: "skyblue", fontSize: "40px"}}>靓靓</h2>
+
+          </div>
+        )
+      }
+    }
+    const root = ReactDOM.createRoot(document.querySelector("#root"))
+    root.render(<App/>)
+
+  </script>
+</body>
+</html>
