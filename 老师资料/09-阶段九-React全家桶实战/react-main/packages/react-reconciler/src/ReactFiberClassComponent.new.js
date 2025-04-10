@@ -303,6 +303,7 @@ function checkShouldComponentUpdate(
   nextContext,
 ) {
   const instance = workInProgress.stateNode;
+  // 判断组件中是否有实现shouldComponentUpdate函数
   if (typeof instance.shouldComponentUpdate === 'function') {
     let shouldUpdate = instance.shouldComponentUpdate(
       newProps,
